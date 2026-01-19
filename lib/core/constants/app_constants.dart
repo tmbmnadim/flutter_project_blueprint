@@ -1,0 +1,75 @@
+import 'enums.dart';
+
+class AppConstants {
+  // Constant Variables
+  static UserRole userRole = UserRole.guest;
+  static bool isOrganization = false;
+  static String token = "";
+  static String refreshToken = "";
+  static String userId = "";
+
+  // static const String COUNTRY_CODE = 'country_code';
+  // static const String LANGUAGE_CODE = 'language_code';
+
+  // static List<LanguageModel> languages = [
+  //   LanguageModel(
+  //     imageUrl: "🇺🇸",
+  //     languageName: 'English',
+  //     countryCode: 'US',
+  //     languageCode: 'en',
+  //   ),
+  //   LanguageModel(
+  //     imageUrl: "🇧🇪",
+  //     languageName: 'Dutch (Belgium)',
+  //     countryCode: 'BE',
+  //     languageCode: 'nl',
+  //   ),
+  //   LanguageModel(
+  //     imageUrl: "🇧🇪",
+  //     languageName: 'French (Belgium)',
+  //     countryCode: 'BE',
+  //     languageCode: 'fr',
+  //   ),
+  //   LanguageModel(
+  //     imageUrl: "🇧🇪",
+  //     languageName: 'German (Belgium)',
+  //     countryCode: 'BE',
+  //     languageCode: 'de',
+  //   ),
+  // ];
+
+  static String timeAgoSinceDate(DateTime from, {bool numericDates = true}) {
+    DateTime date = from.toLocal();
+    final date2 = DateTime.now().toLocal();
+    final difference = date2.difference(date);
+
+    if (difference.inSeconds < 5) {
+      return "Just Now";
+    } else if (difference.inSeconds <= 60) {
+      return '${difference.inSeconds} seconds ago';
+    } else if (difference.inMinutes <= 1) {
+      return (numericDates) ? '1 minute ago' : 'A minute ago';
+    } else if (difference.inMinutes <= 60) {
+      return '${difference.inMinutes} minutes ago';
+    } else if (difference.inHours <= 1) {
+      return (numericDates) ? '1 hour ago' : 'An hour ago';
+    } else if (difference.inHours <= 60) {
+      return '${difference.inHours} hours ago';
+    } else if (difference.inDays <= 1) {
+      return (numericDates) ? '1 day ago' : 'Yesterday';
+    } else if (difference.inDays <= 6) {
+      return '${difference.inDays} days ago';
+    } else if ((difference.inDays / 7).ceil() <= 1) {
+      return (numericDates) ? '1 week ago' : 'Last week';
+    } else if ((difference.inDays / 7).ceil() <= 4) {
+      return '${(difference.inDays / 7).ceil()} weeks ago';
+    } else if ((difference.inDays / 30).ceil() <= 1) {
+      return (numericDates) ? '1 month ago' : 'Last month';
+    } else if ((difference.inDays / 30).ceil() <= 30) {
+      return '${(difference.inDays / 30).ceil()} months ago';
+    } else if ((difference.inDays / 365).ceil() <= 1) {
+      return (numericDates) ? '1 year ago' : 'Last year';
+    }
+    return '${(difference.inDays / 365).floor()} years ago';
+  }
+}
